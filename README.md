@@ -14,6 +14,23 @@ Open:
 http://localhost:8000/
 ```
 
+## GitHub Pages
+
+If this is published as a project page, the URL will look like:
+
+```text
+https://your-username.github.io/BlogForm/
+```
+
+Use the folder URLs from there:
+
+```text
+https://your-username.github.io/BlogForm/blog/
+https://your-username.github.io/BlogForm/blog/my-new-post/
+```
+
+URLs like `https://your-username.github.io/blog/` only work if this site is published from a root user site repo or a custom domain.
+
 ## Add A New Blog Post
 
 1. Create a Markdown file in `content/blog/`.

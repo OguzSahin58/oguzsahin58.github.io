@@ -1,4 +1,9 @@
-const BLOGS_URL = '/data/blogs.json';
+const SITE_ROOT = new URL('../../', document.currentScript.src);
+const BLOGS_URL = new URL('data/blogs.json', SITE_ROOT);
+
+function siteUrl(path) {
+    return new URL(String(path).replace(/^\/+/, ''), SITE_ROOT).href;
+}
 
 function formatDate(dateString) {
     const options = { year: 'numeric', month: 'long', day: 'numeric' };
@@ -36,7 +41,7 @@ async function loadBlogs(targetId, limit) {
         container.innerHTML = visibleBlogs.map(blog => `
             <article class="post-item">
                 <time class="post-date">${formatDate(blog.created_at)}</time>
-                <a href="/blog/${blog.slug}/" class="post-item-link text-link">${escapeHtml(blog.title)}</a>
+                <a href="${siteUrl(`blog/${blog.slug}/`)}" class="post-item-link text-link">${escapeHtml(blog.title)}</a>
                 ${blog.description ? `<p class="post-description">${escapeHtml(blog.description)}</p>` : ''}
             </article>
         `).join('');
@@ -61,7 +66,7 @@ async function loadMarkdownPost() {
     try {
         const blogs = await getBlogs();
         const blog = blogs.find(item => item.slug === slug);
-        const response = await fetch(mdUrl);
+        const response = await fetch(siteUrl(mdUrl));
         if (!response.ok) throw new Error('Failed to fetch markdown');
 
         const markdown = await response.text();
@@ -85,7 +90,7 @@ async function fetchAbout() {
     if (!container) return;
 
     try {
-        const response = await fetch('/data/about.json');
+        const response = await fetch(siteUrl('data/about.json'));
         if (!response.ok) throw new Error('Failed to fetch about data');
 
         const data = await response.json();
