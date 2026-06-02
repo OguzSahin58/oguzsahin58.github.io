@@ -452,6 +452,24 @@ body.navy-background #starfield {
     margin: 0 0 1.5rem 1.25rem;
 }
 
+.playlist-row {
+    width: min(100vw - 32px, 1080px);
+    max-width: none;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+    margin-top: 1.5rem;
+}
+
+.spotify-playlist {
+    display: block;
+    width: 100%;
+    min-height: 450px;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--surface-soft);
+}
+
 .section-band {
     padding: 40px 0 72px;
 }
@@ -607,6 +625,11 @@ body.navy-background #starfield {
         flex-direction: column;
         gap: 4px;
     }
+
+    .playlist-row {
+        width: 100%;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
 }
 
 @media (max-width: 560px) {
@@ -686,5 +709,9 @@ body.navy-background #starfield {
 
     .site-footer {
         margin-top: 36px;
+    }
+
+    .playlist-row {
+        grid-template-columns: 1fr;
     }
 }
