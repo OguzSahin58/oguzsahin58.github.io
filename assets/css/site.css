@@ -33,6 +33,10 @@ body {
     line-height: 1.6;
 }
 
+img {
+    max-width: 100%;
+}
+
 a {
     color: inherit;
 }
@@ -100,6 +104,9 @@ a {
 }
 
 .nav-link {
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
     padding-bottom: 6px;
 }
 
@@ -135,7 +142,7 @@ a {
 
 .home-layout {
     display: grid;
-    grid-template-columns: 260px minmax(0, 1fr);
+    grid-template-columns: minmax(220px, 260px) minmax(0, 1fr);
     gap: 42px;
     align-items: start;
 }
@@ -167,7 +174,7 @@ a {
 }
 
 .profile-photo {
-    width: min(100%, 250px);
+    width: min(100%, 220px);
     aspect-ratio: 1;
     justify-self: center;
     border: 1px solid rgba(255, 255, 255, 0.14);
@@ -235,6 +242,7 @@ a {
     margin-bottom: 1.2rem;
     color: var(--text-secondary);
     font-size: 1.08rem;
+    overflow-wrap: anywhere;
 }
 
 .hero {
@@ -359,6 +367,7 @@ a {
 .post-body {
     color: var(--text-primary);
     font-size: 1.08rem;
+    overflow-wrap: anywhere;
 }
 
 .content-block p,
@@ -410,6 +419,7 @@ a {
     font-size: 1.35rem;
     font-weight: 700;
     text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 .post-description {
@@ -431,6 +441,7 @@ a {
     border-bottom: 1px solid rgba(255, 255, 255, 0.09);
     color: var(--text-primary);
     text-decoration: none;
+    overflow-wrap: anywhere;
 }
 
 .social-link span,
@@ -471,13 +482,36 @@ a {
     }
 }
 
+@media (max-width: 900px) {
+    .home-layout {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .profile-box {
+        position: static;
+        grid-template-columns: 120px minmax(0, 1fr);
+        align-items: center;
+    }
+
+    .profile-photo,
+    .profile-photo-placeholder {
+        width: 120px;
+        grid-row: span 3;
+    }
+
+    .profile-links {
+        align-self: start;
+    }
+}
+
 @media (max-width: 760px) {
     .site-shell {
         width: min(100% - 24px, 1080px);
     }
 
     .site-header {
-        padding-bottom: 34px;
+        padding: 18px 0 30px;
     }
 
     .nav {
@@ -489,21 +523,13 @@ a {
         width: 100%;
         flex-wrap: wrap;
         justify-content: flex-start;
-        gap: 14px 18px;
+        gap: 2px 18px;
     }
 
     .hero {
         grid-template-columns: 1fr;
         gap: 28px;
         padding-top: 8px;
-    }
-
-    .home-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .profile-box {
-        position: static;
     }
 
     .hero-title {
@@ -514,5 +540,85 @@ a {
     .contact-item {
         flex-direction: column;
         gap: 4px;
+    }
+}
+
+@media (max-width: 560px) {
+    .site-shell {
+        width: min(100% - 20px, 1080px);
+    }
+
+    .nav-brand {
+        font-size: 0.96rem;
+    }
+
+    .nav-links {
+        gap: 0 16px;
+    }
+
+    .nav-link,
+    .text-link {
+        font-size: 0.92rem;
+    }
+
+    .profile-box {
+        grid-template-columns: 88px minmax(0, 1fr);
+        gap: 12px;
+        padding: 14px;
+    }
+
+    .profile-photo,
+    .profile-photo-placeholder {
+        width: 88px;
+    }
+
+    .profile-box h1 {
+        font-size: 1.15rem;
+    }
+
+    .profile-box p {
+        font-size: 0.9rem;
+    }
+
+    .profile-links {
+        grid-column: 1 / -1;
+    }
+
+    .vader-banner {
+        aspect-ratio: 16 / 10;
+        margin-bottom: 30px;
+    }
+
+    .content-section {
+        padding-bottom: 30px;
+    }
+
+    .content-section h2,
+    .page-title,
+    .post-title {
+        font-size: clamp(1.9rem, 12vw, 2.55rem);
+    }
+
+    .content-section p:not(.eyebrow),
+    .content-block,
+    .post-body,
+    .page-subtitle {
+        font-size: 1rem;
+    }
+
+    .page-subtitle {
+        margin-bottom: 30px;
+    }
+
+    .post-item-link {
+        font-size: 1.15rem;
+    }
+
+    .section-band {
+        padding: 30px 0 48px;
+    }
+
+    .site-footer {
+        margin-top: 36px;
     }
 }
