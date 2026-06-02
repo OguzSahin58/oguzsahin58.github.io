@@ -4,48 +4,87 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Oguz Sahin | Posts</title>
-    <meta name="description" content="Personal blog of Oguz Sahin">
+    <title>Oguz Sahin</title>
+    <meta name="description" content="Personal website and blog of Oguz Sahin">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/assets/css/site.css">
 </head>
 
 <body>
     <canvas id="starfield"></canvas>
 
-    <div class="layout">
-        <header class="header">
+    <div class="site-shell">
+        <header class="site-header">
             <nav class="nav">
-                <a href="index.html" class="nav-brand" style="display: flex; align-items: center; gap: 8px;">
-                    <img src="darth-vader.svg" alt="Darth Vader Logo"
-                        style="width: 24px; height: 24px; object-fit: contain; filter: invert(1);">
+                <a href="/" class="nav-brand">
+                    <img src="/assets/img/darth-vader.svg" alt="Darth Vader Logo" class="nav-logo">
                     Oguz Sahin
                 </a>
                 <div class="nav-links">
-                    <a href="about.html" class="nav-link lightsaber-hover">About</a>
-                    <a href="index.html" class="nav-link lightsaber-hover active">Posts</a>
+                    <a href="/about/" class="nav-link">About</a>
+                    <a href="/blog/" class="nav-link">Blog</a>
+                    <a href="/contact/" class="nav-link">Contact</a>
                 </div>
             </nav>
         </header>
 
-        <main class="main-content">
-            <h1 class="page-title">Posts</h1>
-            <p class="page-subtitle">Thoughts, tutorials, and insights.</p>
+        <main class="home-layout">
+            <aside class="profile-box" aria-label="Profile summary">
+                <img src="/assets/img/pfp.jpg" alt="Profile photo placeholder" class="profile-photo"> 
+                <h1>Oguz Sahin</h1>
+                <p>Engineer. Problem Solver. Thinker. Ambitious.</p>
+                <div class="profile-links">
+                    <a href="https://github.com/oguzsahin58" class="text-link">GitHub</a>
+                    <a href="https://www.linkedin.com/in/oguzsahin58/" class="text-link">LinkedIn</a>
+                </div>
+            </aside>
 
-            <div id="posts-container" class="posts-list">
-                <!-- Posts will be injected here via JavaScript -->
-                <div class="loading">Loading from the Force...</div>
+            <div class="home-content">
+                <section class="vader-banner" aria-label="Darth Vader wide photo">
+                    <img src="/assets/img/background.jpg" alt="Darth Vader wide photo" class="wide-photo">
+                </section>
+
+                <section class="content-section">
+                    <h2>Me </h2>
+                    <p>
+                        I am Jr. Software Engineer with a passion, ambition to learn and grow while struggleing to 
+                        find my place in the tech world. During my lifetime I have been alwasy looking for 
+                        optimal solutions to the problems I encounter. This mindset has led me to software engineering. 
+                    </p>
+                    <p>
+                        My intreset was always to contribute something meaningful to the world, just kidding, 
+                        I just want to be a part of the team that focuses on building products that can make 
+                        a difference in the sectors that involved in. As a engineer perspective, I am not categorizing
+                        myself to a maintainer, instead I am putting myself in the builder/creator category. 
+                    </p>
+                </section>
+
+                <section class="content-section">
+                    <p class="eyebrow">Now</p>
+                    <h2>What I Am Working On</h2>
+                    <p>
+                        After leaving my previous job, which is Ericsson, I am trying to land a new job. 
+                        While doing that, I am trying to new things like Qt, C++, Django, Trading bots, etc. 
+                    </p>
+                </section>
+
+                <section class="section-band" aria-labelledby="recent-posts-title">
+                    <p class="eyebrow">Latest Blog Posts</p>
+                    <div id="recent-posts-container" class="posts-list">
+                        <div class="loading">Loading from the Force...</div>
+                    </div>
+                </section>
             </div>
         </main>
 
-        <footer class="footer">
-            <p>© 2026 Oguz Sahin. May the Force be with you.</p>
+        <footer class="site-footer">
+            <p>&copy; 2026 Oguz Sahin. May the Force be with you.</p>
         </footer>
     </div>
 
-    <script src="js/app.js?v=1.1"></script>
+    <script src="/assets/js/site.js"></script>
 </body>
 
 </html>
