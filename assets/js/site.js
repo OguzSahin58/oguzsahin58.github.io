@@ -1,5 +1,6 @@
 const SITE_ROOT = new URL('../../', document.currentScript.src);
 const BLOGS_URL = new URL('data/blogs.json', SITE_ROOT);
+const BACKGROUND_STORAGE_KEY = 'navyBackgroundEnabled';
 
 function siteUrl(path) {
     return new URL(String(path).replace(/^\/+/, ''), SITE_ROOT).href;
@@ -17,6 +18,32 @@ function escapeHtml(value) {
         .replace(/>/g, '&gt;')
         .replace(/"/g, '&quot;')
         .replace(/'/g, '&#039;');
+}
+
+function setupBackgroundSwitch() {
+    const navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+
+    const switchLabel = document.createElement('label');
+    switchLabel.className = 'background-switch';
+    switchLabel.innerHTML = `
+        <input type="checkbox" aria-label="Change background to navy blue">
+        <span class="background-switch-track" aria-hidden="true"></span>
+        <span>Navy</span>
+    `;
+
+    const input = switchLabel.querySelector('input');
+    const savedPreference = localStorage.getItem(BACKGROUND_STORAGE_KEY) === 'true';
+
+    input.checked = savedPreference;
+    document.body.classList.toggle('navy-background', savedPreference);
+
+    input.addEventListener('change', () => {
+        document.body.classList.toggle('navy-background', input.checked);
+        localStorage.setItem(BACKGROUND_STORAGE_KEY, String(input.checked));
+    });
+
+    navLinks.appendChild(switchLabel);
 }
 
 async function getBlogs() {
@@ -85,30 +112,10 @@ async function loadMarkdownPost() {
     }
 }
 
-async function fetchAbout() {
-    const container = document.getElementById('about-content-container');
-    if (!container) return;
-
-    try {
-        const response = await fetch(siteUrl('data/about.json'));
-        if (!response.ok) throw new Error('Failed to fetch about data');
-
-        const data = await response.json();
-        if (data && data.markdown) {
-            container.innerHTML = window.marked ? marked.parse(data.markdown) : `<p>${escapeHtml(data.markdown)}</p>`;
-        } else {
-            container.innerHTML = '<p class="text-secondary">Biography is currently empty.</p>';
-        }
-    } catch (error) {
-        console.error('Error fetching about:', error);
-        container.innerHTML = '<p class="text-secondary">The Jedi Archives have no record of this entity.</p>';
-    }
-}
-
 function bootPage() {
+    setupBackgroundSwitch();
     if (document.getElementById('recent-posts-container')) loadBlogs('recent-posts-container', 3);
     if (document.getElementById('posts-container')) loadBlogs('posts-container');
-    if (document.getElementById('about-content-container')) fetchAbout();
     if (document.getElementById('post-content')) loadMarkdownPost();
 }
 

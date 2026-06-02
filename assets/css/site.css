@@ -28,9 +28,14 @@ body {
     background: radial-gradient(circle at 18% 12%, rgba(90, 28, 28, 0.22), transparent 34%),
         radial-gradient(circle at 80% 18%, rgba(0, 229, 255, 0.1), transparent 28%),
         var(--bg-color);
+    transition: background-color 0.24s ease;
     color: var(--text-primary);
     font-family: var(--font-sans);
     line-height: 1.6;
+}
+
+body.navy-background {
+    background: #020b1a;
 }
 
 img {
@@ -48,6 +53,10 @@ a {
     width: 100vw;
     height: 100vh;
     pointer-events: none;
+}
+
+body.navy-background #starfield {
+    display: none;
 }
 
 .site-shell {
@@ -91,6 +100,63 @@ a {
     align-items: center;
     justify-content: flex-end;
     gap: 22px;
+}
+
+.background-switch {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    min-height: 44px;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.background-switch input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.background-switch-track {
+    position: relative;
+    width: 42px;
+    height: 24px;
+    flex: 0 0 auto;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.background-switch-track::after {
+    content: '';
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: var(--text-secondary);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.background-switch input:focus-visible + .background-switch-track {
+    outline: 2px solid var(--accent-saber);
+    outline-offset: 3px;
+}
+
+.background-switch input:checked + .background-switch-track {
+    border-color: var(--accent-saber);
+    background: rgba(2, 11, 26, 0.92);
+    box-shadow: 0 0 18px rgba(0, 229, 255, 0.18);
+}
+
+.background-switch input:checked + .background-switch-track::after {
+    transform: translateX(18px);
+    background: var(--accent-saber);
 }
 
 .nav-link,
@@ -365,7 +431,7 @@ a {
 
 .content-block,
 .post-body {
-    color: var(--text-primary);
+    color: var(--text-secondary);
     font-size: 1.08rem;
     overflow-wrap: anywhere;
 }
